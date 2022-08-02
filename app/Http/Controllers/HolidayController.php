@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\HolidayResource;
 use App\Models\Holiday;
 use Illuminate\Http\Request;
 
@@ -9,11 +10,17 @@ class HolidayController extends Controller
 {
     public function index()
     {
-        return Holiday::all();
+        /**
+         * responses = []
+         * for each(holiday in Holiday::all()) {
+         *  add to responses = new HolidayResource(holiday)
+         * }
+         */
+        return HolidayResource::collection(Holiday::all());
     }
 
     public function show(Holiday $holiday)
     {
-        return $holiday;
+        return new HolidayResource($holiday);
     }
 }
