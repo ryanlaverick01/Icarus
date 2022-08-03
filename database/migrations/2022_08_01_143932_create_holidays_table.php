@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId("hotel_id");
             $table->foreignId("continent_id");
-            $table->foreignId("'country_id");
-            $table->foreignId("city_id");
+            $table->foreignId("country_id");
+            $table->foreignId("city_id")->nullable();
             $table->foreignId("category_id");
             $table->foreignId("climate_id");
             $table->foreignId("location_id");
