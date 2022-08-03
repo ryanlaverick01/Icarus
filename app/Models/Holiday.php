@@ -21,38 +21,48 @@ class Holiday extends Model
       'price_per_night'
     ];
 
+    protected $with = [
+      'hotel',
+      'continent',
+      'country',
+      'city',
+      'category',
+      'climate',
+      'location'
+    ];
+
     public function hotel()
     {
-        return $this->hasOne(Hotel::class);
+        return $this->hasOne(Hotel::class, 'id', 'hotel_id');
     }
 
     public function continent()
     {
-        return $this->hasOne(Continent::class);
+        return $this->hasOne(Continent::class, 'id', 'continent_id');
     }
 
     public function country()
     {
-        return $this->hasOne(Country::class);
+        return $this->hasOne(Country::class, 'id', 'country_id');
     }
 
     public function city()
     {
-        return $this->hasOne(City::class);
+        return $this->hasOne(City::class, 'id', 'city_id');
     }
 
     public function category()
     {
-        return $this->hasOne(Category::class);
+        return $this->hasOne(Category::class, 'id', 'category_id');
     }
 
     public function climate()
     {
-        return $this->hasOne(Climate::class);
+        return $this->hasOne(Climate::class, 'id', 'climate_id');
     }
 
     public function location()
     {
-        return $this->hasOne(Location::class);
+        return $this->hasOne(Location::class, 'id', 'location_id');
     }
 }
