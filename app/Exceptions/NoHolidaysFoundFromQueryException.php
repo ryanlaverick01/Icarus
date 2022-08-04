@@ -16,6 +16,6 @@ class NoHolidaysFoundFromQueryException extends Exception
         return response()->json([
             'status' => 404,
             'error' => 'No Holidays Found'
-        ]);
+        ], 404);
     }
 }
