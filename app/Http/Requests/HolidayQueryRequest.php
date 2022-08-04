@@ -26,7 +26,7 @@ class HolidayQueryRequest extends FormRequest
         return [
             'climate' => ['string', 'exists:climates,name'],
             'category' => ['string', 'exists:categories,name'],
-            'locations' => ['string', 'exists:locations,name']
+            'location' => ['string', 'exists:locations,name']
         ];
     }
 }
