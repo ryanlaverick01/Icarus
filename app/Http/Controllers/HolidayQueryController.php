@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\NoHolidaysFoundFromQueryException;
+use App\Http\Requests\HolidayQueryRequest;
 use App\Http\Resources\HolidayResource;
 use App\Models\Category;
 use App\Models\Climate;
@@ -16,7 +17,7 @@ class HolidayQueryController extends Controller
     /**
      * @throws NoHolidaysFoundFromQueryException
      */
-    public function store(Request $request)
+    public function store(HolidayQueryRequest $request)
     {
         $climate = Climate::where('name', $request->climate)->first();
         $category = Category::where('name', $request->category)->first();
