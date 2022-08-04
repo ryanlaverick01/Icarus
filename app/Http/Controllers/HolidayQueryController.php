@@ -23,8 +23,7 @@ class HolidayQueryController extends Controller
         $category = Category::where('name', $request->category)->first();
         $location = Location::where('name', $request->location)->first();
 
-        $query = Holiday::
-                            where('climate_id', $climate->id)
+        $query = Holiday::where('climate_id', $climate->id)
                             ->where('category_id', $category->id)
                             ->where('location_id', $location->id);
 
