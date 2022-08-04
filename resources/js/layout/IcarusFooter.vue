@@ -23,12 +23,17 @@ const { addUserMessage } = useChat();
 let message = ref("");
 
 async function submitMessage() {
+    //Grab value from "message" variable.
     let msg = message.value;
+    //Check if message is blank.
     if(msg === "") {
+        //If message is blank, halt the method and do not submit the message.
         return;
     }
 
+    //Set value of input box to blank.
     message.value = "";
-    addUserMessage(msg, 0);
+    //Submit message.
+    await addUserMessage(msg, 0);
 }
 </script>

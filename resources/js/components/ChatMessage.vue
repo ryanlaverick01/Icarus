@@ -1,4 +1,5 @@
 <template>
+    <!-- Icarus message -->
     <div v-if="isIcarus" class="flex items-center space-x-2 pb-2">
         <div class="align-middle text-center w-12">
             <div class="flex justify-center">
@@ -15,6 +16,7 @@
         </div>
     </div>
 
+    <!-- User message -->
     <div v-else class="flex justify-end items-center space-x-2 pb-2 align-right">
         <div>
             <div class="bg-blue-600 rounded-md drop-shadow-md text-white p-2">
