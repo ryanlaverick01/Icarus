@@ -22,7 +22,7 @@
                             <star-icon class="h-4 w-4 fill-slate-800" />
                         </div>
 
-                        <p>£{{ holiday.price_per_night }} per night</p>
+                        <p>£{{ holiday.price_per_night }} per per night</p>
                     </div>
                 </div>
 
