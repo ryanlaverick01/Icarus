@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class HolidayController extends Controller
 {
-    public function index()
+    //Return all holidays
+    public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         /**
          * responses = []
@@ -17,10 +18,5 @@ class HolidayController extends Controller
          * }
          */
         return HolidayResource::collection(Holiday::all());
-    }
-
-    public function show(Holiday $holiday)
-    {
-        return new HolidayResource($holiday);
     }
 }
