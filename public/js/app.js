@@ -20623,8 +20623,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./router */ "./resources/js/router/index.js");
 
 
+ //Create application using "App" as base component.
 
-var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]); //Tell Vue to use imported router, mount the app to the "#app" container located in @/resources/views/welcome.blade.php
+
 app.use(_router__WEBPACK_IMPORTED_MODULE_2__["default"]).mount("#app");
 
 /***/ }),
