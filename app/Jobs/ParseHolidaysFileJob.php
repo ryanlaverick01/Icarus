@@ -70,6 +70,8 @@ class ParseHolidaysFileJob implements ShouldQueue
                 'price_per_night' => $row[9],
             ]);
         }
+
+        //Remove file after processing.
     }
 
     //Find the id of the first hotel record with a matching name, or create one if no model is found and return its id.
