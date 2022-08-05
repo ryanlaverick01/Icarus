@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Http\JsonResponse;
 
 class NoHolidaysFoundFromQueryException extends Exception
 {
@@ -11,6 +12,11 @@ class NoHolidaysFoundFromQueryException extends Exception
         parent::__construct();
     }
 
+    /**
+     * Constructs exception response.
+     *
+     * @return JsonResponse
+     */
     public function render()
     {
         return response()->json([

@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        //Schedule import to be ran every hour.
         $schedule->command("import:products")->hourly();
     }
 

@@ -16,7 +16,7 @@ class ContinentResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'name' => $this->name
+            'name' => $this->name //Map 'name' field into response.
         ];
     }
 }

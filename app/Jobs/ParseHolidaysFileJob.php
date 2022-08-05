@@ -29,6 +29,8 @@ class ParseHolidaysFileJob implements ShouldQueue
     /**
      * Create a new job instance.
      *
+     * Pass in $file parameter and set to global $file variable.
+     *
      * @return void
      */
     public function __construct($file)
@@ -43,16 +45,22 @@ class ParseHolidaysFileJob implements ShouldQueue
      */
     public function handle()
     {
+        //Read file contents using local method.
         $fileContents = $this->getFileContents();
+        //Create an array of objects based on loaded file. One object related to one row within the file.
         $explodedFile = array_map('str_getcsv', explode("\n", $fileContents));
 
+        //Remove headers.
         $explodedFile[0] = [];
+        //Iterate through rows.
         foreach($explodedFile as $row) {
+            //Skip row if blank.
             if(count($row) <= 1) continue;
 
+            //Create holiday.
             Holiday::create([
                 'hotel_id' => $this->getHotel($row[1]),
-                'city_id' => $row[2] ? $this->getCity($row[2]) : null,
+                'city_id' => $row[2] ? $this->getCity($row[2]) : null, //Sets value to "null" if cell is blank.
                 'continent_id' => $this->getContinent($row[3]),
                 'country_id' => $this->getCountry($row[4]),
                 'category_id' => $this->getCategory($row[5]),
@@ -64,6 +72,7 @@ class ParseHolidaysFileJob implements ShouldQueue
         }
     }
 
+    //Find the id of the first hotel record with a matching name, or create one if no model is found and return its id.
     protected function getHotel($name)
     {
         return Hotel::firstOrCreate([
@@ -71,6 +80,7 @@ class ParseHolidaysFileJob implements ShouldQueue
         ])->id;
     }
 
+    //Find the id of the first continent record with a matching name, or create one if no model is found and return its id.
     protected function getContinent($name)
     {
         return Continent::firstOrCreate([
@@ -78,6 +88,7 @@ class ParseHolidaysFileJob implements ShouldQueue
         ])->id;
     }
 
+    //Find the id of the first country record with a matching name, or create one if no model is found and return its id.
     protected function getCountry($name)
     {
         return Country::firstOrCreate([
@@ -85,6 +96,7 @@ class ParseHolidaysFileJob implements ShouldQueue
         ])->id;
     }
 
+    //Find the id of the first city record with a matching name, or create one if no model is found and return its id.
     protected function getCity($name)
     {
         return City::firstOrCreate([
@@ -92,6 +104,7 @@ class ParseHolidaysFileJob implements ShouldQueue
         ])->id;
     }
 
+    //Find the id of the first category record with a matching name, or create one if no model is found and return its id.
     protected function getCategory($name)
     {
         return Category::firstOrCreate([
@@ -99,6 +112,7 @@ class ParseHolidaysFileJob implements ShouldQueue
         ])->id;
     }
 
+    //Find the id of the first climate record with a matching name, or create one if no model is found and return its id.
     protected function getClimate($name)
     {
         return Climate::firstOrCreate([
@@ -106,6 +120,7 @@ class ParseHolidaysFileJob implements ShouldQueue
         ])->id;
     }
 
+    //Find the id of the first location record with a matching name, or create one if no model is found and return its id.
     protected function getLocation($name)
     {
         return Location::firstOrCreate([
@@ -113,6 +128,7 @@ class ParseHolidaysFileJob implements ShouldQueue
         ])->id;
     }
 
+    //Attempt to read file contents, wrap in a try/catch block to ensure that the file is still present, if not then throw error.
     protected function getFileContents(): ?string
     {
         try {
