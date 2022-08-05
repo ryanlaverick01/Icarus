@@ -24,9 +24,9 @@ class HolidayQueryRequest extends FormRequest
     public function rules()
     {
         return [
-            'climate' => ['required', 'string', 'exists:climates,name'],
-            'category' => ['required', 'string', 'exists:categories,name'],
-            'location' => ['required', 'string', 'exists:locations,name']
+            'climate' => ['string', 'exists:climates,name'],
+            'category' => ['string', 'exists:categories,name'],
+            'location' => ['string', 'exists:locations,name']
         ];
     }
 }
