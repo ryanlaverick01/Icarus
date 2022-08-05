@@ -24,9 +24,9 @@ class HolidayQueryRequest extends FormRequest
     public function rules()
     {
         return [
-            'climate' => ['required', 'string', 'exists:climates,name'],
-            'category' => ['required', 'string', 'exists:categories,name'],
-            'location' => ['required', 'string', 'exists:locations,name']
+            'climate' => ['required', 'string', 'exists:climates,name'], //Field must exist, be a string, be a valid record within the "climates" table on the "name" column.
+            'category' => ['required', 'string', 'exists:categories,name'], //Field must exist, be a string, be a valid record within the "categories" table on the "name" column.
+            'location' => ['required', 'string', 'exists:locations,name'] //Field must exist, be a string, be a valid record within the "locations" table on the "name" column.
         ];
     }
 }

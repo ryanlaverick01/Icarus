@@ -20,7 +20,7 @@ class ImportHolidaysCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Import holidays from storage//app//public//holidays folder.';
+    protected $description = 'Import holidays.';
 
     /**
      * Create a new command instance.
@@ -39,10 +39,14 @@ class ImportHolidaysCommand extends Command
      */
     public function handle()
     {
+        //Get 'local' storage disk - this is defined in config/filesystems.php.
         $disk = Storage::disk('local');
+        //Get all files under the "Holidays" directory.
         $files = $disk->files('Holidays');
 
+        //Iterate through all files in directory.
         foreach($files as $file) {
+            //Dispatch a job for each file to process and create holidays within database.
             ParseHolidaysFileJob::dispatch($file);
         }
 
